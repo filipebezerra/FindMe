@@ -3,10 +3,6 @@ language: android
 jdk:
   - oraclejdk7
 
-branches:
-  only:
-    - new-2.0
-
 android:
   components:
     - platform-tools
