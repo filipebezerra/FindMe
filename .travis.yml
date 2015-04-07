@@ -1,0 +1,28 @@
+language: android
+
+jdk:
+  - oraclejdk7
+
+branches:
+  only:
+    - new-2.0
+
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-22.0.0
+    - android-22
+    - extra-android-support
+    - extra-android-m2repository
+    - extra-google-m2repository
+    - extra-google-google_play_services
+
+licenses:
+  - android-sdk-license-.+
+
+before_script:
+    - gradle -v
+
+script:
+    - gradle clean build --stacktrace

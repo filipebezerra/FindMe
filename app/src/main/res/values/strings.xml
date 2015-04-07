@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Find Me</string>
+    <string name="title_activity_main">@string/app_name</string>
+    <string name="title_activity_main_after_showing">Where Am I?</string>
+
+    <string name="action_location_updates">Start Location Updates</string>
+    <string name="action_location_updates_stop">Stop Location Updates</string>
+
+    <string name="label_you_are_at">YOU ARE AT</string>
+    <string name="your_are_being_tracked">You are being tracked</string>
+    <string name="invalid_lat_long_used">Invalid latitude or longitude used</string>
+    <string name="service_not_available">No geocoder available</string>
+    <string name="no_address_found">Sorry, no address found</string>
+    <string name="action_fetch_address">Fetch My Address</string>
+    <string name="no_geocoder_available">No geocoder available</string>
+</resources>
