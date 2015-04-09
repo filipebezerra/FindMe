@@ -17,11 +17,9 @@ import java.util.Locale;
 import timber.log.Timber;
 
 /**
- * .
- *
- * @author Filipe Bezerra
- * @version #, 06/04/2015
- * @since #
+ * Asynchronously handles an intent using a worker thread. Receives a ResultReceiver object and a
+ * location through an intent. Tries to fetch the address for the location using a Geocoder, and
+ * sends the result to the ResultReceiver.
  */
 public class FetchAddressIntentService extends IntentService {
     private static final String TAG = FetchAddressIntentService.class.getSimpleName();
@@ -31,23 +29,28 @@ public class FetchAddressIntentService extends IntentService {
      */
     private ResultReceiver mReceiver;
 
+    /**
+     * This constructor is required, and calls the super IntentService(String)
+     * constructor with the name for a worker thread.
+     */
     public FetchAddressIntentService(){
         super(TAG);
         Timber.tag(TAG);
     }
 
     /**
-     * Creates an IntentService.  Invoked by your subclass's constructor.
+     * Tries to get the location address using a Geocoder. If successful, sends an address to a
+     * result receiver. If unsuccessful, sends an error message instead.
+     * Note: We define a {@link android.os.ResultReceiver} in * MainActivity to process content
+     * sent from this service.
      *
-     * @param name Used to name the worker thread, important only for debugging.
+     * This service calls this method from the default worker thread with the intent that started
+     * the service. When this method returns, the service automatically stops.
      */
-    public FetchAddressIntentService(String name) {
-        super(name);
-        Timber.tag(TAG);
-    }
-
     @Override
     protected void onHandleIntent(Intent intent) {
+        String errorMessage = "";
+
         mReceiver = intent.getParcelableExtra(Constants.RECEIVER);
 
         // Check if receiver was properly registered.
@@ -56,11 +59,26 @@ public class FetchAddressIntentService extends IntentService {
             return;
         }
 
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-
-        String errorMessage = "";
-
         Location location = intent.getParcelableExtra(Constants.LOCATION_DATA_EXTRA);
+
+        if (location == null) {
+            errorMessage = "No location data provided";
+            Timber.d(errorMessage);
+            deliverResultToReceiver(Constants.FAILURE_RESULT, errorMessage);
+            return;
+        }
+
+        // Errors could still arise from using the Geocoder (for example, if there is no
+        // connectivity, or if the Geocoder is given illegal location data). Or, the Geocoder may
+        // simply not have an address for a location. In all these cases, we communicate with the
+        // receiver using a resultCode indicating failure. If an address is found, we use a
+        // resultCode indicating success.
+
+        // The Geocoder used in this sample. The Geocoder's responses are localized for the given
+        // Locale, which represents a specific geographical or linguistic region. Locales are used
+        // to alter the presentation of information such as numbers or dates to suit the conventions
+        // in the region they describe.
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
 
         List<Address> addresses = null;
 
