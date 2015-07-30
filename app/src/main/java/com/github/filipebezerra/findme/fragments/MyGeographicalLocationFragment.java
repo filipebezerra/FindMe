@@ -1,4 +1,4 @@
-package io.github.filipebezerra.findme.fragments;
+package com.github.filipebezerra.findme.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,11 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
-import io.github.filipebezerra.findme.R;
-
-import static io.github.filipebezerra.findme.utils.UIUtil.showMessage;
+import com.github.filipebezerra.findme.R;
 
 /**
  * .
@@ -26,9 +24,9 @@ public class MyGeographicalLocationFragment extends BaseGoogleApisFragment {
     /**
      * Injected UI widgets
      */
-    @InjectView(R.id.last_location_text) protected TextView mLastLocationView;
-    @InjectView(R.id.last_update_time_text) protected TextView mLastUpdateTimeView;
-    @InjectView(R.id.last_address_text) protected TextView mLastAddressView;
+    @Bind(R.id.last_location_text) protected TextView mLastLocationView;
+    @Bind(R.id.last_update_time_text) protected TextView mLastUpdateTimeView;
+    @Bind(R.id.last_address_text) protected TextView mLastAddressView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,7 @@ public class MyGeographicalLocationFragment extends BaseGoogleApisFragment {
             @Nullable Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_my_geographical_location, container,
                 false);
-        ButterKnife.inject(this, fragmentView);
+        ButterKnife.bind(this, fragmentView);
         return fragmentView;
     }
 
@@ -91,11 +89,13 @@ public class MyGeographicalLocationFragment extends BaseGoogleApisFragment {
             if (mRequestingLocationUpdates) {
                 stopLocationUpdates();
                 mRequestingLocationUpdates = false;
-                showMessage(getActivity(), "Tracking your location turned off");
+                // TODO: showMessage
+                //showMessage(getActivity(), "Tracking your location turned off");
             } else {
                 startLocationUpdates();
                 mRequestingLocationUpdates = true;
-                showMessage(getActivity(), "Tracking your location turned on");
+                // TODO: showMessage
+                //showMessage(getActivity(), "Tracking your location turned on");
             }
             updateMenuItemLocationUpdates(item);
         }
@@ -104,7 +104,7 @@ public class MyGeographicalLocationFragment extends BaseGoogleApisFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
+        ButterKnife.unbind(this);
     }
 
     @Override

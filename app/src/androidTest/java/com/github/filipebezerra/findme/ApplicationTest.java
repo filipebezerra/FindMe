@@ -1,4 +1,4 @@
-package io.github.filipebezerra.findme;
+package com.github.filipebezerra.findme;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

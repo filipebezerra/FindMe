@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.filipebezerra.findme"
+    package="com.github.filipebezerra.findme"
     >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"
+        />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name="io.github.filipebezerra.findme.LastLocationApplication"
+        android:name=".FindMeApplication"
         >
         <meta-data
             android:name="com.google.android.gms.version"
@@ -18,7 +26,7 @@
             />
 
         <activity
-            android:name="io.github.filipebezerra.findme.activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
             >
             <intent-filter>
@@ -28,7 +36,7 @@
         </activity>
 
         <service
-            android:name="io.github.filipebezerra.findme.tasks.FetchAddressIntentService"
+            android:name=".tasks.FetchAddressIntentService"
             android:exported="false"
             />
     </application>

@@ -1,12 +1,12 @@
-package io.github.filipebezerra.findme.activities;
+package com.github.filipebezerra.findme.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import io.github.filipebezerra.findme.R;
+import com.github.filipebezerra.findme.R;
 import timber.log.Timber;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 

@@ -1,4 +1,4 @@
-package io.github.filipebezerra.findme.utils;
+package com.github.filipebezerra.findme.utils;
 
 import static com.google.android.gms.common.ConnectionResult.API_UNAVAILABLE;
 import static com.google.android.gms.common.ConnectionResult.CANCELED;

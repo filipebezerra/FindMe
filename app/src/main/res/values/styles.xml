@@ -1,11 +1,9 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/material_deep_purple_500</item>
         <item name="colorPrimaryDark">@color/material_deep_purple_700</item>
         <item name="colorAccent">@color/material_pink_700</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
     </style>
 
 </resources>

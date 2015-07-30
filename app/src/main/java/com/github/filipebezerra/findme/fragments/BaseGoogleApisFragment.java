@@ -1,4 +1,4 @@
-package io.github.filipebezerra.findme.fragments;
+package com.github.filipebezerra.findme.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,24 +9,23 @@ import android.os.ResultReceiver;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import com.github.filipebezerra.findme.tasks.FetchAddressIntentService;
+import com.github.filipebezerra.findme.utils.Constants;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import io.github.filipebezerra.findme.tasks.FetchAddressIntentService;
-import io.github.filipebezerra.findme.utils.Constants;
 import java.text.DateFormat;
 import java.util.Date;
 import timber.log.Timber;
 
+import static com.github.filipebezerra.findme.utils.ConnectionResultError.getConnectionResultErrorMessage;
+import static com.github.filipebezerra.findme.utils.ConnectionResultError.getConnectionSuspendedCauseMessage;
 import static com.google.android.gms.common.GooglePlayServicesUtil.getErrorDialog;
 import static com.google.android.gms.common.GooglePlayServicesUtil.isGooglePlayServicesAvailable;
 import static com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import static com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import static io.github.filipebezerra.findme.utils.ConnectionResultError.getConnectionResultErrorMessage;
-import static io.github.filipebezerra.findme.utils.ConnectionResultError.getConnectionSuspendedCauseMessage;
-import static io.github.filipebezerra.findme.utils.UIUtil.showMessage;
 
 /**
  * Base fragment class containing helper methods from {@link com.google.android.gms.common.api.GoogleApiClient}.
@@ -173,7 +172,8 @@ public abstract class BaseGoogleApisFragment extends Fragment
             }
 
             mAddressRequested = true;
-            showMessage(getActivity(), "Getting your current address...");
+            // TODO: showMessage
+            //showMessage(getActivity(), "Getting your current address...");
         }
     }
 
@@ -222,7 +222,8 @@ public abstract class BaseGoogleApisFragment extends Fragment
                 } else {
                     Timber.d("onActivityResult for GooglePlayServices error dialog result "
                             + "cancelled or failed with code %d", resultCode);
-                    showMessage(getActivity(), "Google Play must be installed and updated");
+                    // TODO: showMessage
+                    //showMessage(getActivity(), "Google Play must be installed and updated");
                 }
                 break;
         }
@@ -445,7 +446,8 @@ public abstract class BaseGoogleApisFragment extends Fragment
             mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
 
             if (resultCode == Constants.FAILURE_RESULT) {
-                showMessage(getActivity(), mAddressOutput);
+                // TODO: showMessage
+                //showMessage(getActivity(), mAddressOutput);
             } else {
                 displayAddressOutput();
             }

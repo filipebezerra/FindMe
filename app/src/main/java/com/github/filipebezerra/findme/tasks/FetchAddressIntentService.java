@@ -1,4 +1,4 @@
-package io.github.filipebezerra.findme.tasks;
+package com.github.filipebezerra.findme.tasks;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
-import io.github.filipebezerra.findme.R;
-import io.github.filipebezerra.findme.utils.Constants;
+import com.github.filipebezerra.findme.R;
+import com.github.filipebezerra.findme.utils.Constants;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
